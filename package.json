@@ -1,0 +1,17 @@
+{
+  "name": "system",
+  "version": "1.0.0",
+  "description": "~~~",
+  "main": "./BOT/index.js",
+  "dependencies": {
+    "discord.js": "^12.1.1",
+    "node-jose": "^2.0.0",
+    "yandex-disk": "0.0.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "echo 'start' && node ./BOT/index.js"
+  },
+  "author": "lev43",
+  "license": "ISC"
+}

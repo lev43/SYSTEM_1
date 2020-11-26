@@ -1,0 +1,1 @@
+gnome-terminal -e "python3 ./BOT/converter.py" & gnome-terminal -e "node ./BOT/."
