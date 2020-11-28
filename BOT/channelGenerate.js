@@ -20,8 +20,12 @@ function Generator(guild){
     channel.createOverwrite(role, {VIEW_CHANNEL: true, SEND_MESSAGES: true}, "update")
   }
 
-  function addpermisions(role, channel){
-    guild.roles.fetch().then(roles=>channel.createOverwrite(roles.cache.find(_role=>_role.name==role), {VIEW_CHANNEL: true, SEND_MESSAGES: true}, "update"))
+  function addpermisionsRole(roleName, channel){
+    guild.roles.fetch().then(roles=>{
+      guild.roles.fetch().then(roles=>roles.cache.find(_role=>_role.name==roleName)).then(role=>{
+        if(role)channel.createOverwrite(role, {VIEW_CHANNEL: true, SEND_MESSAGES: true}, "update")
+      })
+    })
   }
 
   function findChannel(){
@@ -69,8 +73,8 @@ function Generator(guild){
             }else{
               addpermisions(role, channel)
               //Этот канал должны видеть некоторые другие роли, поэтому даем права и им
-              addpermisions(name(param[0], "методист", param[2]), channel)
-              addpermisions(name(param[0], "пдо", param[2]), channel)
+              addpermisionsRole(name(param[0], "методист", param[2]), channel)
+              addpermisionsRole(name(param[0], "пдо", param[2]), channel)
             }
             break;
         }

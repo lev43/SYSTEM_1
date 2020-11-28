@@ -197,10 +197,10 @@ function update_roles(){//Функция обработчик ролей сер�
         //Боты не являются участниками. Мы не можем присваивать роли главе сервера, поэтому проверяем что-бы это был не он
         
         function findRole(roleName){
-            return roles.cache.find(role=>role.name==roleName)
+            return guild.roles.cache.find(role=>role.name==roleName)
         }
         function createRole(roleName, roleHexColor){
-            let role=roles.cache.find(role=>role.name==roleName)
+            let role=guild.roles.cache.find(role=>role.name==roleName)
             if(!role)return guild.roles.create({data: {name: roleName, color: roleHexColor}})
             return undefined
         }
@@ -227,21 +227,15 @@ function update_roles(){//Функция обработчик ролей сер�
                 //Идем по позициям(педагог, ученик, методист, родитель и т.п.)
                 person.position.filter(pos=>pos.toLowerCase().split('-').shift()==club).forEach(position=>{
                     
-                    //posName: Хранит имя позиции         (педагог, методист и т.п.)
-                    //posDep:  Хранит департамент позиции (тех, спорт и т.д.)
                     let posName=position.toLowerCase().split('-').pop(), 
                     posDep=position.toLowerCase().split('-')[1]
                     
                     //Идем по направлениям(робототехника, рисование, шахматы и т.п.)
                     person.direction.filter(dir=>dir.toLowerCase().split('-').shift()==club).forEach(direction=>{
                         
-                        //roleName: хранит имя роли которое будет сгенерировано по шаблону
-                        //color:    хранит hex цвет роли ('#0f0f03', 'ffffff', 'ff00ff')
                         let roleName='NULL',
                         color=global.roles.colors.default
                         
-                        //dirName: хранит имя направления
-                        //dirDep:  хранит департамент направления
                         let dirName=direction.toLowerCase().split('-').pop(), 
                             dirDep=direction.toLowerCase().split('-')[1]
                             
@@ -386,7 +380,6 @@ bot.on('ready', () => {
     console.log(`Logged in as ${bot.user.tag}!`)
     
     guild=bot.guilds.cache.get(global.config.guildID)
-    console.log(guild)
     start=true
 
     setInterval(()=>{
@@ -407,7 +400,7 @@ bot.on('ready', () => {
         update_roles()
         generator(guild)
         mailing()
-    }, 10000)
+    }, 1000)
 });
 bot.login(token);
 
