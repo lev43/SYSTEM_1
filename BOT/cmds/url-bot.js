@@ -2,7 +2,7 @@ const Discord  = module.require("discord.js");
 const fs = require("fs");
 module.exports.run = async (bot, message, args) => {
 	if(!bot.checkAdmin())return;
-	message.member.send('https://discordapp.com/api/oauth2/authorize?client_id=708681258753982514&permissions=0&scope=bot');
+	bot.generateInvite("ADMINISTRATOR").then(link => {message.channel.send(link)})
 	message.delete();
 };
 module.exports.help = {

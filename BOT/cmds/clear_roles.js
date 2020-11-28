@@ -9,5 +9,5 @@ module.exports.run = async (bot,message,args,mentions,guild) => {
     }catch(err){ console.log(err) } 
 }; 
 module.exports.help = { 
-    name: "clear_roles" 
+  name: "clear_roles" 
 };
